@@ -53,7 +53,7 @@ function Job_Recommendation() {
     
     formData.append("File", uploadFile, uploadFile.name);
 
-    axios.post("http://localhost:5000/jobRecommendation", formData)
+    axios.post("https://flask-recommendation.herokuapp.com/jobRecommendation", formData)
          .then((response) => {
            setData(response.data);
            setMatchedSkills(response.data['Matched Skills'][0]);

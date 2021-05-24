@@ -71,7 +71,7 @@ function Resume_Recommendation() {
         
         formData.append("File", uploadFile, uploadFile.name);
 
-        axios.post("http://localhost:5000/resumeRecommendation", formData)
+        axios.post("https://flask-recommendation.herokuapp.com/resumeRecommendation", formData)
              .then((response) => {
                 console.log(response.data);
                 setData(response.data);

@@ -52,7 +52,7 @@ function Resume_Recommendation() {
     }
 
     const download = () => {
-        fetch('http://localhost:5000/sampleJob', {method:'POST',responseType:'arraybuffer'})
+        fetch('https://flask-recommendation.herokuapp.com/sampleJob', {method:'POST',responseType:'arraybuffer'})
             .then(response => response.arrayBuffer())
             .then((buffer) => {
               const blob = new Blob([buffer], { type: 'application/json' });
@@ -71,7 +71,7 @@ function Resume_Recommendation() {
         
         formData.append("File", uploadFile, uploadFile.name);
 
-        axios.post("http://localhost:5000/resumeRecommendation", formData)
+        axios.post("https://flask-recommendation.herokuapp.com/resumeRecommendation", formData)
              .then((response) => {
                 setData(response.data);
                 setJobRequirement(response.data['data']);

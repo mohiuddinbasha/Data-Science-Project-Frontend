@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Highlighter from "react-highlight-words";
 
@@ -21,6 +21,13 @@ const Resume_Form = () => {
     const [jobNumber, setJobNumber] = useState(0);
     const [matchedSkills, setMatchedSkills] = useState(['Work Experience']);
 
+    useEffect(() => {
+        window.scrollTo({
+            top: 0, 
+            behavior: 'smooth'
+        });
+    }, [flag])
+    
     const getButtonsUsingForLoop = (num) => {
         const array = []
     
@@ -80,9 +87,9 @@ const Resume_Form = () => {
         event.preventDefault();
         let data = {name: name, email: email, location: location, company: company, role: role, experience: experience, ug: ug, pg: pg, doctorate: doctorate,
                     IT_Skills: IT_Skills, languages: languages, summary: summary, workExperience: workExperience};
-        axios.post("https://flask-recommendation.herokuapp.com/resumeForm", data)
+        axios.post("http://localhost:5000/resumeForm", data)
              .then((response) => {
-                console.log(response);
+                // console.log(response);
                 setData(response.data);
                 setMatchedSkills(response.data['Matched Skills'][0]);
                 setFlag(true);
@@ -90,7 +97,6 @@ const Resume_Form = () => {
              .catch((error) => {
                 alert('Something went wrong! Check the format of the resume form and try again');
              });
-        
     }
 
     return (

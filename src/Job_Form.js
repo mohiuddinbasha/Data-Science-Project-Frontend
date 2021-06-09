@@ -66,7 +66,7 @@ const Job_Form = () => {
     const afterSubmit = (event) => {
         event.preventDefault();
         let data = {title: title, company: company, location: location, email: email, role: role, experience: experience, salary: salary, ug: ug, pg: pg, doctorate: doctorate, IT_Skills: IT_Skills, job_description: job_description};
-        axios.post("http://localhost:5000/jobForm", data)
+        axios.post("https://flask-recommendation.herokuapp.com/jobForm", data)
              .then((response) => {
                 // console.log(response);
                 setData(response.data);

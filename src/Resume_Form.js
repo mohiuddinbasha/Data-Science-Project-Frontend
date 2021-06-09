@@ -80,7 +80,7 @@ const Resume_Form = () => {
         event.preventDefault();
         let data = {name: name, email: email, location: location, company: company, role: role, experience: experience, ug: ug, pg: pg, doctorate: doctorate,
                     IT_Skills: IT_Skills, languages: languages, summary: summary, workExperience: workExperience};
-        axios.post("http://localhost:5000/resumeForm", data)
+        axios.post("https://flask-recommendation.herokuapp.com/resumeForm", data)
              .then((response) => {
                 console.log(response);
                 setData(response.data);

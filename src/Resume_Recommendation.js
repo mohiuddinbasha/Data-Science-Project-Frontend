@@ -29,7 +29,7 @@ function Resume_Recommendation() {
     const job_data = () => {
         const array = [];
         for(var key in jobRequirement){
-            if (key !== 'Matched Skills' && key !== 'index'){
+            if (key !== 'Matched Skills' && key !== 'index' && key !== 'Link'){
                 array.push(<h4><Highlighter
                 highlightClassName="YourHighlightClass"
                 searchWords={matchedSkills}
@@ -38,6 +38,9 @@ function Resume_Recommendation() {
                 /></h4>);
             }
         }
+        if (array.length > 0) {
+            array.push(<h4>{"Naukri Link: "}<a href={jobRequirement["Link"]}>{jobRequirement["Link"]}</a></h4>);
+          }
         return array;
     }
 
@@ -52,7 +55,7 @@ function Resume_Recommendation() {
     }
 
     const download = () => {
-        fetch('https://flask-recommendation.herokuapp.com/sampleJob', {method:'POST',responseType:'arraybuffer'})
+        fetch('http://localhost:5000/sampleJob', {method:'POST',responseType:'arraybuffer'})
             .then(response => response.arrayBuffer())
             .then((buffer) => {
               const blob = new Blob([buffer], { type: 'application/json' });
@@ -71,7 +74,7 @@ function Resume_Recommendation() {
         
         formData.append("File", uploadFile, uploadFile.name);
 
-        axios.post("https://flask-recommendation.herokuapp.com/resumeRecommendation", formData)
+        axios.post("http://localhost:5000/resumeRecommendation", formData)
              .then((response) => {
                 setData(response.data);
                 setJobRequirement(response.data['data']);
